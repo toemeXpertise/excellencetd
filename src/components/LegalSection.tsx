@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function LegalPageSection() {
   const handleCall = () => {
     if (DelmaPhoneNumber) {
-      window.open(`tel:${DelmaPhoneNumber}`);
+      window.open(`tel:${DelmaPhoneNumber.replace(/\s/g, "")}`);
     } else {
       toast.info("Aucun numéro de téléphone disponible");
     }
@@ -248,7 +248,7 @@ export default function LegalPageSection() {
                 <div className="bg-accent/10 p-4 rounded-lg">
                   <p className="text-sm">
                     <strong>Contact :</strong> Pour toute question concernant vos données personnelles, contactez-nous à
-                    l'adresse contact@delma-tech.com
+                    l'adresse {DelmaEmail}.
                   </p>
                 </div>
               </div>
@@ -309,9 +309,9 @@ export default function LegalPageSection() {
                         <div>
                           <p className="font-medium text-foreground">Adresse</p>
                           <p className="text-sm">
-                            Quartier Residential
+                            Ouagadougou 1, Quartier 2
                             <br />
-                            Bamako, Mali
+                            Burkina Faso
                           </p>
                         </div>
                       </div>
@@ -319,14 +319,14 @@ export default function LegalPageSection() {
                         <Phone className="h-4 w-4 mt-1 text-secondary" />
                         <div>
                           <p className="font-medium text-foreground">Téléphone</p>
-                          <p className="text-sm">{DelmaPhoneNumber || "+223 XX XX XX XX"}</p>
+                          <p className="text-sm">{DelmaPhoneNumber}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <Mail className="h-4 w-4 mt-1 text-secondary" />
                         <div>
                           <p className="font-medium text-foreground">Email</p>
-                          <p className="text-sm">contact@delma-tech.com</p>
+                          <p className="text-sm">{DelmaEmail}</p>
                         </div>
                       </div>
                     </div>

@@ -1,19 +1,31 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Smartphone, CreditCard, DollarSign, ShoppingCart, Headphones, Shield, type LucideIcon } from "lucide-react";
+import {
+  Smartphone,
+  CreditCard,
+  DollarSign,
+  ShoppingCart,
+  Headphones,
+  Shield,
+  Send,
+  Building2,
+  Wallet,
+  type LucideIcon,
+} from "lucide-react";
+
 import orangeMoneyImg from "@/assets/orange_money_banier.jpg";
 import { DelmaPhoneNumber } from "@/constants/delmaInfos";
 import { toast } from "react-toastify";
 
 const ServicesSection = () => {
-    const handleCall = () => {
-      if (DelmaPhoneNumber) {
-        window.open(`tel:${DelmaPhoneNumber}`);
-      } else {
-        toast.info("Aucun numéro de téléphone disponible");
-      }
+  const handleWhatsapp = () => {
+    if (DelmaPhoneNumber) {
+      window.open(`https://wa.me/${DelmaPhoneNumber.replace(/\s/g, "")}`);
+    } else {
+      toast.info("Aucun numéro de téléphone disponible");
+    }
   };
-  
+
   const services: { icon: LucideIcon; title: string; description: string; features: string[]; color: string }[] = [
     {
       icon: Smartphone,
@@ -34,6 +46,69 @@ const ServicesSection = () => {
       title: "Transfert d'Argent",
       description: "Solutions de transfert d'argent fiables et sécurisées",
       features: ["Transferts nationaux", "Transferts internationaux", "Taux préférentiels", "Service 24/7"],
+      color: "secondary",
+    },
+    {
+      icon: Send,
+      title: "Moov Money",
+      description: "Service de transfert et paiement mobile Moov",
+      features: ["Transferts rapides", "Paiements marchands", "Retraits faciles", "Frais réduits"],
+      color: "primary",
+    },
+    {
+      icon: Wallet,
+      title: "SankMoney",
+      description: "Solutions de paiement et transfert SankMoney",
+      features: ["Transactions sécurisées", "Interface simple", "Support client", "Disponibilité étendue"],
+      color: "accent",
+    },
+    {
+      icon: DollarSign,
+      title: "Wave Money",
+      description: "Plateforme de transfert d'argent Wave",
+      features: ["Sans frais cachés", "Taux de change avantageux", "Envois internationaux", "Application mobile"],
+      color: "secondary",
+    },
+    {
+      icon: Send,
+      title: "Western Union",
+      description: "Transferts d'argent internationaux de référence",
+      features: ["Réseau mondial", "Envois rapides", "Multiples devises", "Points de retrait nombreux"],
+      color: "primary",
+    },
+    {
+      icon: DollarSign,
+      title: "Money Gramme",
+      description: "Service international de transfert MoneyGram",
+      features: ["Transferts globaux", "Retrait en espèces", "Suivi en temps réel", "Partenaires certifiés"],
+      color: "accent",
+    },
+    {
+      icon: Send,
+      title: "Ria",
+      description: "Transferts d'argent rapides avec Ria Money Transfer",
+      features: ["Plus de 160 pays", "Taux compétitifs", "Envois en minutes", "Options flexibles"],
+      color: "secondary",
+    },
+    {
+      icon: Building2,
+      title: "Versement Eco Bank",
+      description: "Services bancaires et transferts Ecobank",
+      features: ["Virements bancaires", "Comptes multiples", "Services premium", "Réseau panafricain"],
+      color: "primary",
+    },
+    {
+      icon: Wallet,
+      title: "Coris Money",
+      description: "Solutions financières Coris Bank",
+      features: ["Transferts bancaires", "Cartes prépayées", "Services digitaux", "Accompagnement personnalisé"],
+      color: "accent",
+    },
+    {
+      icon: CreditCard,
+      title: "Vente d'Unités",
+      description: "Recharge de crédit pour opérateurs mobiles",
+      features: ["Télécel", "Nana Express", "Sap-sap", "Recharge instantanée"],
       color: "secondary",
     },
   ];
@@ -98,9 +173,9 @@ const ServicesSection = () => {
                     ))}
                   </ul>
                   <Button
-                    onClick={handleCall}
+                    onClick={handleWhatsapp}
                     variant="outline"
-                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    className="w-full text-teal-700 group-hover:bg-teal-700 group-hover:text-primary-foreground transition-colors"
                   >
                     En savoir plus
                   </Button>
@@ -124,7 +199,12 @@ const ServicesSection = () => {
                 <div className="bg-white/20 rounded-full px-4 py-2 text-white text-sm">✓ Paiements sécurisés</div>
                 <div className="bg-white/20 rounded-full px-4 py-2 text-white text-sm">✓ Recharges mobiles</div>
               </div>
-              <Button variant="hero" size="lg" className="bg-white text-accent hover:bg-white/90">
+              <Button
+                onClick={handleWhatsapp}
+                variant="hero"
+                size="lg"
+                className="bg-white text-secondary hover:bg-white/90"
+              >
                 Activer Orange Money
               </Button>
             </div>

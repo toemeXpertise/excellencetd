@@ -1,4 +1,4 @@
-import { Card, CardContent,  CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, Heart, ShoppingCart } from "lucide-react";
@@ -9,15 +9,25 @@ import { DelmaPhoneNumber } from "@/constants/delmaInfos";
 import { toast } from "react-toastify";
 
 const ProductsSection = () => {
-    const handleCall = () => {
-      if (DelmaPhoneNumber) {
-        window.open(`tel:${DelmaPhoneNumber}`);
-      } else {
-        toast.info("Aucun numéro de téléphone disponible");
-      }
+  const handleWhatsapp = () => {
+    if (DelmaPhoneNumber) {
+      window.open(`https://wa.me/${DelmaPhoneNumber.replace(/\s/g, "")}`);
+    } else {
+      toast.info("Aucun numéro de téléphone disponible");
+    }
   };
-  
-  const featuredProducts: { id: number; name: string; price: string; originalPrice: string | null; image: string; rating: number; badge: string; badgeColor: string; features: string[] }[] = [
+
+  const featuredProducts: {
+    id: number;
+    name: string;
+    price: string;
+    originalPrice: string | null;
+    image: string;
+    rating: number;
+    badge: string;
+    badgeColor: string;
+    features: string[];
+  }[] = [
     {
       id: 1,
       name: "iPhone 15 Pro",
@@ -27,7 +37,7 @@ const ProductsSection = () => {
       rating: 4.9,
       badge: "Nouveau",
       badgeColor: "primary",
-      features: ["128GB", "Titanium", "Pro Camera", "USB-C"]
+      features: ["128GB", "Titanium", "Pro Camera", "USB-C"],
     },
     {
       id: 2,
@@ -38,7 +48,7 @@ const ProductsSection = () => {
       rating: 4.8,
       badge: "Populaire",
       badgeColor: "accent",
-      features: ["256GB", "S Pen", "AI Camera", "5G"]
+      features: ["256GB", "S Pen", "AI Camera", "5G"],
     },
     {
       id: 3,
@@ -49,31 +59,31 @@ const ProductsSection = () => {
       rating: 4.9,
       badge: "Promo",
       badgeColor: "destructive",
-      features: ["128GB", "M2 Chip", "ProRes", "Magic Keyboard"]
-    }
+      features: ["128GB", "M2 Chip", "ProRes", "Magic Keyboard"],
+    },
   ];
 
   const categories: { name: string; count: string; icon: string }[] = [
     {
       name: "Smartphones",
       count: "50+ modèles",
-      icon: "📱"
+      icon: "📱",
     },
     {
       name: "Tablettes",
       count: "25+ modèles",
-      icon: "📱"
+      icon: "📱",
     },
     {
       name: "Accessoires",
       count: "100+ produits",
-      icon: "🎧"
+      icon: "🎧",
     },
     {
       name: "Montres Connectées",
       count: "15+ modèles",
-      icon: "⌚"
-    }
+      icon: "⌚",
+    },
   ];
 
   return (
@@ -92,7 +102,10 @@ const ProductsSection = () => {
         {/* Categories */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {categories.map((category, index) => (
-            <div key={index} className="bg-white rounded-lg p-4 text-center hover:bg-white/80 transition-colors cursor-pointer">
+            <div
+              key={index}
+              className="bg-white rounded-lg p-4 text-center hover:bg-white/80 transition-colors cursor-pointer"
+            >
               <div className="text-2xl mb-2">{category.icon}</div>
               <h3 className="font-semibold text-sm mb-1">{category.name}</h3>
               <p className="text-xs text-muted-foreground">{category.count}</p>
@@ -108,19 +121,25 @@ const ProductsSection = () => {
               <Card key={product.id} className="group card-hover overflow-hidden">
                 <CardHeader className="p-0 relative">
                   <div className="relative overflow-hidden">
-                    <img 
-                      src={product.image} 
+                    <img
+                      src={product.image}
                       alt={product.name}
                       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Badge 
-                      variant={product.badgeColor === 'primary' ? 'default' : product.badgeColor === 'accent' ? 'secondary' : 'destructive'}
+                    <Badge
+                      variant={
+                        product.badgeColor === "primary"
+                          ? "default"
+                          : product.badgeColor === "accent"
+                          ? "secondary"
+                          : "destructive"
+                      }
                       className="absolute top-4 left-4"
                     >
                       {product.badge}
                     </Badge>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="icon"
                       className="absolute top-4 right-4 bg-white/80 hover:bg-white transition-colors"
                     >
@@ -136,9 +155,9 @@ const ProductsSection = () => {
                     </div>
                     <span className="text-xs text-muted-foreground">(120+ avis)</span>
                   </div>
-                  
+
                   <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
-                  
+
                   <div className="flex flex-wrap gap-1 mb-4">
                     {product.features.map((feature, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
@@ -153,18 +172,16 @@ const ProductsSection = () => {
                       <span className="text-sm text-muted-foreground">FCFA</span>
                     </div>
                     {product.originalPrice && (
-                      <span className="text-sm text-muted-foreground line-through">
-                        {product.originalPrice} FCFA
-                      </span>
+                      <span className="text-sm text-muted-foreground line-through">{product.originalPrice} FCFA</span>
                     )}
                   </div>
 
                   <div className="flex gap-2">
-                    <Button onClick={handleCall} variant="default" className="flex-1 bg-blue-800">
+                    <Button onClick={handleWhatsapp} variant="default" className="flex-1 bg-blue-800">
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       Acheter
                     </Button>
-                    <Button variant="default" size="icon">
+                    <Button onClick={handleWhatsapp} variant="default" size="icon">
                       <Heart className="h-4 w-4" />
                     </Button>
                   </div>
@@ -176,14 +193,13 @@ const ProductsSection = () => {
 
         {/* CTA Section */}
         <div className="text-center bg-teal-600 rounded-2xl p-8 md:p-12">
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Plus de 200 produits disponibles
-          </h3>
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Plus de 200 produits disponibles</h3>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
-            Smartphones, tablettes, accessoires, montres connectées... Trouvez l'appareil qui vous correspond au meilleur prix.
+            Smartphones, tablettes, accessoires, montres connectées... Trouvez l'appareil qui vous correspond au
+            meilleur prix.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg" className="bg-white text-primary hover:bg-white/90">
+            <Button onClick={handleWhatsapp} variant="hero" size="lg" className="bg-white text-secondary hover:bg-white/90">
               Voir tous les produits
             </Button>
           </div>

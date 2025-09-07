@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 import { DelmaEmail, DelmaPhoneNumber } from "@/constants/delmaInfos";
 import React from "react";
- 
+
 type ContactInfoItem = {
   icon: LucideIcon;
   title: string;
@@ -22,11 +22,10 @@ export default function ContactSection() {
   const [email, setEmail] = React.useState<string>("");
   const [telephone, setTelephone] = React.useState<string>("");
   const [subject, setSubject] = React.useState<string>("");
- 
-  
-  const handleCall = () => {
+
+  const handleWhatsapp = () => {
     if (DelmaPhoneNumber) {
-      window.open(`tel:${DelmaPhoneNumber}`);
+      window.open(`https://wa.me/${DelmaPhoneNumber.replace(/\s/g, "")}`);
     } else {
       toast.info("Aucun numéro de téléphone disponible");
     }
@@ -46,7 +45,7 @@ export default function ContactSection() {
       title: "Téléphone",
       details: [DelmaPhoneNumber, "Appels et WhatsApp"],
       color: "text-primary",
-      onClick: handleCall,
+      onClick: handleWhatsapp,
     },
     {
       icon: Mail,
@@ -159,27 +158,56 @@ export default function ContactSection() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Nom complet *</label>
-                    <Input onChange={(e) => setName(e.target.value)} type="text" value={name} placeholder="Votre nom" required />
+                    <Input
+                      onChange={(e) => setName(e.target.value)}
+                      type="text"
+                      value={name}
+                      placeholder="Votre nom"
+                      required
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
-                    <Input onChange={(e) => setTelephone(e.target.value)} type="tel" value={telephone} placeholder={"+226 XX XX XX XX"} />
+                    <Input
+                      onChange={(e) => setTelephone(e.target.value)}
+                      type="tel"
+                      value={telephone}
+                      placeholder={"+226 XX XX XX XX"}
+                    />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <Input onChange={(e) => setEmail(e.target.value)} value={email} required type="email" placeholder="votreInfo@gmail.com" />
+                  <Input
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    required
+                    type="email"
+                    placeholder="votreInfo@gmail.com"
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Sujet *</label>
-                  <Input onChange={(e) => setSubject(e.target.value)} type="text" value={subject} required placeholder="Comment pouvons-nous vous aider ?" />
+                  <Input
+                    onChange={(e) => setSubject(e.target.value)}
+                    type="text"
+                    value={subject}
+                    required
+                    placeholder="Comment pouvons-nous vous aider ?"
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                  <Textarea onChange={(e) => setMessage(e.target.value)}  value={message} required placeholder="Décrivez votre demande en détail..." rows={5} />
+                  <Textarea
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    required
+                    placeholder="Décrivez votre demande en détail..."
+                    rows={5}
+                  />
                 </div>
 
                 <Button type="submit" className="w-full bg-teal-900 hover:bg-primary/90 text-lg py-3">

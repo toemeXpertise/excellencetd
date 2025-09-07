@@ -7,18 +7,17 @@ import React from "react";
 import { toast } from "react-toastify";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
 import ScrollToTop from "react-scroll-to-top";
 
-import { DelmaFaceBookLink, DelmaInstagramLink, DelmaTwitterLink, DelmaLinkedInLink } from "@/constants/delmaInfos";
+import { DelmaFaceBookLink, DelmaInstagramLink, DelmaTikTokLink } from "@/constants/delmaInfos";
 
 export default function Footer() {
   const [email, setEmail] = React.useState<string>("");
 
   const handleCall = () => {
     if (DelmaPhoneNumber) {
-      window.open(`tel:${DelmaPhoneNumber}`);
+      window.open(`tel:${DelmaPhoneNumber.replace(/\s/g, "")}`);
     } else {
       toast.info("Aucun numéro de téléphone disponible");
     }
@@ -42,8 +41,7 @@ export default function Footer() {
   const socialLinks: { name: string; icon: React.ElementType; href: string }[] = [
     { name: "Facebook", icon: FaFacebook, href: DelmaFaceBookLink },
     { name: "Instagram", icon: FaInstagram, href: DelmaInstagramLink },
-    { name: "Twitter", icon: FaTwitter, href: DelmaTwitterLink },
-    { name: "LinkedIn", icon: FaLinkedin, href: DelmaLinkedInLink },
+    { name: "TikTok", icon: FaTiktok, href: DelmaTikTokLink },
   ];
 
   return (
@@ -73,7 +71,7 @@ export default function Footer() {
                   placeholder="Votre adresse email"
                   className="bg-gray-700 border-white/20 text-white placeholder:text-white/70"
                 />
-                <Button type="submit" variant="hero" className="bg-white px-6 text-accent hover:bg-white/90">
+                <Button type="submit" variant="hero" className="bg-white px-6 text-black hover:bg-white/90">
                   <ArrowRight className="h-4 w-4 mr-2" />
                   S'abonner
                 </Button>
@@ -192,6 +190,8 @@ export default function Footer() {
                     href={social.href}
                     className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors"
                     aria-label={social.name}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <IconComponent className="h-5 w-5" />
                   </a>
@@ -225,13 +225,38 @@ export default function Footer() {
             © {new Date().getFullYear()} Excellence Tech Depot. Tous droits réservés.
           </div>
           <div className="flex items-center gap-6 text-sm text-white/60">
-            <span>Site web: www.excellencetd.com</span>
+            <span>
+              Site web:{" "}
+              <a style={{ textDecoration: "underline" }} href="https://www.excellencetd.com">
+                www.excellencetd.com
+              </a>
+            </span>
             <span>•</span>
-            <span>Développé avec ❤️ au Burkina Faso</span>
+            <span>
+              Développé par{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "underline" }}
+                href="https://toemexpertise.com"
+              >
+                ToemeXpertise
+              </a>
+            </span>
           </div>
         </div>
+        <ScrollToTop
+          smooth
+          style={{
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "orange",
+            color: "#ffffff",
+          }}
+        />
       </div>
-      <ScrollToTop smooth style={{ borderRadius: "50%" }} />
     </footer>
   );
 }
